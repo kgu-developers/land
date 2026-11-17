@@ -3,7 +3,7 @@ name: kd-test
 description: Next.js 공개 페이지 검증
 ---
 
-루트에서 `pnpm check`를 실행하여 하네스, 형식, 린트, 타입, Vitest, 빌드를 검사한다.
+루트에서 `pnpm check`를 실행하여 형식, 린트, 타입, Vitest, 빌드를 검사한다.
 
 - `pnpm test:logic`: Node 환경의 유틸/메타데이터 단위 테스트
 - `pnpm test:ui`: jsdom 및 Testing Library로 컴포넌트 렌더링 검증
