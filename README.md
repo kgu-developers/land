@@ -42,26 +42,23 @@ OTP와 같이 브랜치는 `<type>/<ticket-id>`, 커밋은 `<type>(<scope>): <ti
 
 ## CI 및 테스트
 
-OTP 프로젝트와 동일하게 GitHub Actions에서 각 검증 단계를 독립적으로 표시한다.
+OTP와 같이 GitHub Actions에서 검증 항목을 Job 단위로 분리한다.
 
-| Job | 명령 | 목적 |
-| --- | --- | --- |
-| quality | `agent:check-local`, `format`, `lint`, `typecheck` | 하네스, 코드 스타일, 정적 분석 |
-| vitest | `test:logic`, `test:ui` | 유틸리티 및 React 컴포넌트 |
-| build | `build` | Next.js 프로덕션 빌드 |
-| e2e | `test:e2e` | 실제 Chromium에서 라우트 및 SEO 엔드포인트 확인 |
+- **Quality:** 하네스 검사(`agent:check-local`), Prettier(`format`), ESLint(`lint`), 타입 검사(`typecheck`)
+- **Vitest:** `test:logic`(Node)과 `test:ui`(jsdom + Testing Library)
+- **Build:** Next.js 프로덕션 빌드(`build`)
+- **E2E:** 빌드 완료 후 Playwright Chromium에서 라우팅 및 SEO 엔드포인트 테스트(`test:e2e`)
 
 로컬에서 다음 명령으로 확인한다.
 
 ```sh
 pnpm install
 pnpm check
-pnpm exec playwright --version
 pnpm --filter @kd/land exec playwright install chromium
 pnpm build
 pnpm test:e2e
 ```
 
-`pnpm test`는 Vitest 전체를, `pnpm test:logic`과 `pnpm test:ui`는 각각의 테스트 프로젝트를 실행한다. `pnpm check`는 빠른 검증을 위해 브라우저 E2E를 실행하지 않는다. E2E는 별도로 실행해야 한다.
+`pnpm test`는 Vitest 전체를, `pnpm test:logic`과 `pnpm test:ui`는 각각의 테스트 프로젝트를 실행한다. `pnpm check`에는 브라우저 E2E를 포함하지 않는다. E2E는 별도로 실행해야 한다.
 
-**설치 재현성 후속 작업:** 초기 브랜치에는 `pnpm-lock.yaml`이 없다. 의존성을 설치해 lockfile을 생성·커밋한 뒤 CI의 `--no-frozen-lockfile`을 `--frozen-lockfile`로 바꾸고 pnpm 캐시를 활성화해야 한다. 현재 CI 테스트 통과 여부는 별도 확인이 필요하다.
+**설치 재현성 후속 작업:** 초기 브랜치에는 `pnpm-lock.yaml`이 없다. 의존성 설치 후 lockfile을 생성·커밋하고 CI의 `--no-frozen-lockfile`을 `--frozen-lockfile`로 교체하며 pnpm 캐시를 활성화해야 한다.
