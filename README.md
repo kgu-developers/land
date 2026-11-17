@@ -11,7 +11,7 @@ pnpm install
 pnpm dev
 ```
 
-localhost:3000에서 팀 소개를 확인한다. 루트에서 `pnpm check`로 하네스 검사, ESLint, 타입 검사, 프로덕션 빌드를 실행한다. 빌드 후 `pnpm start`로 결과를 확인한다.
+localhost:3000에서 팀 소개를 확인한다. 루트에서 `pnpm check`로 Prettier, ESLint, 타입 검사, Vitest, 프로덕션 빌드를 실행한다. 빌드 후 `pnpm start`로 결과를 확인한다.
 
 ## 구성
 
@@ -20,7 +20,7 @@ localhost:3000에서 팀 소개를 확인한다. 루트에서 `pnpm check`로 �
 | apps/land/src/app      | 공개 페이지, 레이아웃, 메타데이터, robots, sitemap |
 | packages/design-system | OTP에서 복사한 @aics/design-system과 Astryx 스타일 |
 | configs/typescript     | 디자인 패키지와 앱이 사용하는 OTP TypeScript 설정  |
-| .agent                 | 구현·검증·PR 지침, 로컬 작업 파일 검사             |
+| .agent                 | 구현·검증·PR 지침, 테스트 적용 및 검증             |
 
 ## 배포 환경
 
@@ -44,7 +44,7 @@ OTP와 같이 브랜치는 `<type>/<ticket-id>`, 커밋은 `<type>(<scope>): <ti
 
 OTP와 같이 GitHub Actions에서 검증 항목을 Job 단위로 분리한다.
 
-- **Quality:** 하네스 검사(`agent:check-local`), Prettier(`format`), ESLint(`lint`), 타입 검사(`typecheck`)
+- **Quality:** Prettier(`format`), ESLint(`lint`), 타입 검사(`typecheck`)
 - **Vitest:** `test:logic`(Node)과 `test:ui`(jsdom + Testing Library)
 - **Build:** Next.js 프로덕션 빌드(`build`)
 - **E2E:** 빌드 완료 후 Playwright Chromium에서 라우팅 및 SEO 엔드포인트 테스트(`test:e2e`)
