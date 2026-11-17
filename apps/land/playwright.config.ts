@@ -8,7 +8,10 @@ export default defineConfig({
   workers: process.env.CI ? 2 : undefined,
   reporter: [
     ['list'],
-    ['html', { outputFolder: '../../.agent-local/playwright/report', open: 'never' }],
+    [
+      'html',
+      { outputFolder: '../../.agent-local/playwright/report', open: 'never' },
+    ],
   ],
   outputDir: '../../.agent-local/playwright/results',
   use: {
