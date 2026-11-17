@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
 
-test('public landing pages expose semantic metadata', async ({ page }) => {
+test('public pages expose metadata', async ({ page }) => {
   await page.goto('/');
   await expect(page).toHaveTitle('KD Developers');
   await expect(page.locator('html')).toHaveAttribute('lang', 'ko');
-  await expect(page.locator('script[type="application/ld+json"]')).toContainText(
-    '"@type":"Organization"',
-  );
+
+  const jsonLd = page.locator('script[type="application/ld+json"]');
+  await expect(jsonLd).toContainText('"@type":"Organization"');
 });
 
 test('SEO endpoints are available', async ({ request }) => {
