@@ -1,22 +1,99 @@
 name: CI
+
 on:
-  pull_request:
   push:
     branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
 
 jobs:
-  check:
+  quality:
+    name: ${{ matrix.command }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        command: ['agent:check-local', 'format', 'lint', 'typecheck']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      # TODO: switch to --frozen-lockfile and pnpm caching once pnpm-lock.yaml is committed.
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm ${{ matrix.command }}
+
+  vitest:
+    name: test:${{ matrix.suite }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        suite: ['logic', 'ui']
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm test:${{ matrix.suite }}
+
+  build:
+    name: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: pnpm install
-      - run: pnpm check
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm build
+
+  e2e:
+    name: e2e:chromium
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm build
+      - run: pnpm --filter @kd/land exec playwright install --with-deps chromium
+      - run: pnpm test:e2e
+      - name: Upload Playwright failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-failures
+          path: .agent-local/playwright/
+          include-hidden-files: true
+          if-no-files-found: ignore
