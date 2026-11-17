@@ -5,8 +5,12 @@ test('public pages expose metadata', async ({ page }) => {
   await expect(page).toHaveTitle('KD Developers');
   await expect(page.locator('html')).toHaveAttribute('lang', 'ko');
 
-  const jsonLd = page.locator('script[type="application/ld+json"]');
-  await expect(jsonLd).toContainText('"@type":"Organization"');
+  const script = page.locator('script[type="application/ld+json"]');
+  const jsonLd = await script.textContent();
+  expect(JSON.parse(jsonLd ?? '{}')).toMatchObject({
+    '@type': 'Organization',
+    name: 'KD Developers',
+  });
 });
 
 test('SEO endpoints are available', async ({ request }) => {
