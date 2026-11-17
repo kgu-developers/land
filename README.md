@@ -39,3 +39,29 @@ localhost:3000에서 팀 소개를 확인한다. 루트에서 `pnpm check`로 �
 OTP와 같이 브랜치는 `<type>/<ticket-id>`, 커밋은 `<type>(<scope>): <ticket-id> <summary>`, PR 제목은 `[<ticket-id>] <summary>` 형식을 쓴다. 이번 초기 세팅은 지정된 `KD3-336` 브랜치에서 진행한다.
 주 컴포넌트는 PascalCase와 default function, 유틸리티는 lowerCamelCase와 named export를 사용한다. App Router 파일은 Next.js 예약 이름을 따른다.
 루트에서 `pnpm format:write`로 OTP Prettier 설정을 적용한다. Lefthook의 commit-msg 훅은 Conventional Commits 형식을 확인한다.
+
+## CI 및 테스트
+
+OTP 프로젝트와 동일하게 GitHub Actions에서 각 검증 단계를 독립적으로 표시한다.
+
+| Job | 명령 | 목적 |
+| --- | --- | --- |
+| quality | `agent:check-local`, `format`, `lint`, `typecheck` | 하네스, 코드 스타일, 정적 분석 |
+| vitest | `test:logic`, `test:ui` | 유틸리티 및 React 컴포넌트 |
+| build | `build` | Next.js 프로덕션 빌드 |
+| e2e | `test:e2e` | 실제 Chromium에서 라우트 및 SEO 엔드포인트 확인 |
+
+로컬에서 다음 명령으로 확인한다.
+
+```sh
+pnpm install
+pnpm check
+pnpm exec playwright --version
+pnpm --filter @kd/land exec playwright install chromium
+pnpm build
+pnpm test:e2e
+```
+
+`pnpm test`는 Vitest 전체를, `pnpm test:logic`과 `pnpm test:ui`는 각각의 테스트 프로젝트를 실행한다. `pnpm check`는 빠른 검증을 위해 브라우저 E2E를 실행하지 않는다. E2E는 별도로 실행해야 한다.
+
+**설치 재현성 후속 작업:** 초기 브랜치에는 `pnpm-lock.yaml`이 없다. 의존성을 설치해 lockfile을 생성·커밋한 뒤 CI의 `--no-frozen-lockfile`을 `--frozen-lockfile`로 바꾸고 pnpm 캐시를 활성화해야 한다. 현재 CI 테스트 통과 여부는 별도 확인이 필요하다.
