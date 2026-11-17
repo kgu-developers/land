@@ -1,0 +1,26 @@
+{
+  "name": "kd-land",
+  "private": true,
+  "packageManager": "pnpm@10.9.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "pnpm --filter @kd/land dev",
+    "build": "pnpm --filter @kd/land build",
+    "start": "pnpm --filter @kd/land start",
+    "lint": "pnpm --filter @kd/land lint",
+    "typecheck": "pnpm --filter @kd/land typecheck",
+    "agent:check-local": "node .agent/scripts/check-local-files.mjs",
+    "check": "pnpm agent:check-local && pnpm format && pnpm lint && pnpm typecheck && pnpm build",
+    "prepare": "lefthook install",
+    "format": "prettier --check .",
+    "format:write": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "lefthook": "^1.11.11"
+  }
+}

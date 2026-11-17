@@ -1,0 +1,26 @@
+{
+  "name": "@kd/land",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit"
+  },
+  "dependencies": {
+    "@aics/design-system": "workspace:*",
+    "next": "^16.2.1",
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19"
+  },
+  "devDependencies": {
+    "@aics/typescript": "workspace:*",
+    "@types/node": "^22.14.1",
+    "@types/react": "19.1.2",
+    "@types/react-dom": "19.1.2",
+    "typescript": "^5.8.3",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.2.1"
+  }
+}
