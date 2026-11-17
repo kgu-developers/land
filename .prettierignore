@@ -6,5 +6,7 @@ coverage
 .turbo
 pnpm-lock.yaml
 .agent-local
+playwright-report
+test-results
 
 **/next-env.d.ts
