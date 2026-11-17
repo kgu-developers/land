@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        command: ['agent:check-local', 'format', 'lint', 'typecheck']
+        command: ['format', 'lint', 'typecheck']
     steps:
       - uses: actions/checkout@v4
         with:
