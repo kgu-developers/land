@@ -26,6 +26,8 @@ localhost:3000에서 팀 소개를 확인한다. 루트에서 `pnpm check`로 Pr
 
 운영 배포에서만 `SITE_URL`을 실제 공개 origin으로 지정한다. 이 값으로 canonical, Open Graph URL, sitemap과 robots를 만든다. 미설정 환경에는 noindex를 적용한다. 첫 HTML에 팀 설명과 Organization 구조화 데이터를 함께 제공한다.
 
+Vercel 프로젝트 `KD / land`에서 Next.js를 직접 배포한다. `main` 반영 시 Vercel Git 연동으로 운영 배포하고 다른 브랜치는 Preview를 만든다. GitHub Actions는 품질·테스트 검증을 담당한다. 공개 주소는 `https://land.kgudevelopers.monster`이며 Hosting.kr DNS와 기존 서비스 레코드를 유지한다. 프로젝트 설정, 환경변수와 도메인 연결은 [배포 가이드](docs/deployment.md)를 따른다.
+
 ## 페이지 구조
 
 | URL    | 파일                                    | 역할               |
@@ -62,6 +64,8 @@ pnpm test:e2e
 `pnpm test`는 Vitest 전체를, `pnpm test:logic`과 `pnpm test:ui`는 각각의 테스트 프로젝트를 실행한다. `pnpm check`에는 브라우저 E2E를 포함하지 않는다. E2E는 별도로 실행해야 한다.
 
 `pnpm-lock.yaml`을 버전 관리하며 CI는 `pnpm install --frozen-lockfile`과 pnpm 캐시를 사용한다.
+
+CodeRabbit GitHub App으로 PR 생성·추가 push 시 한국어 자동 리뷰를 실행한다. 설정은 `.coderabbit.yaml`에서 관리하며 Draft PR은 자동 리뷰에서 제외한다. CodeRabbit은 GitHub Actions와 별도의 `CodeRabbit` 체크를 제공한다. 저장소 연결과 필수 검사 설정은 [CodeRabbit 운영 가이드](docs/code-review.md)를 따른다.
 
 ## 블로그와 정책 운영
 

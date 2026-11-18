@@ -27,6 +27,7 @@ export async function githubQuery<T>(
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
+      'User-Agent': 'kgu-developers-land',
     },
     body: JSON.stringify({ query, variables }),
     cache: 'no-store',

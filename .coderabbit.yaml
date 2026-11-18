@@ -1,0 +1,23 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+language: ko-KR
+reviews:
+  profile: chill
+  review_status: true
+  review_progress: true
+  commit_status: true
+  fail_commit_status: true
+  auto_review:
+    enabled: true
+    auto_incremental_review: true
+    auto_pause_after_reviewed_commits: 0
+    drafts: false
+knowledge_base:
+  code_guidelines:
+    enabled: true
+    filePatterns:
+      - AGENTS.md
+      - README.md
+      - .agent/skills/kd-work/SKILL.md
+      - .agent/skills/kd-test/SKILL.md
+      - .agent/skills/kd-pr/SKILL.md
+      - .agent/rules/design-system.md
