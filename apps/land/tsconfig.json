@@ -1,0 +1,13 @@
+{
+  "extends": "@aics/typescript/nextjs.json",
+  "compilerOptions": { "jsx": "react-jsx", "incremental": true },
+  "include": [
+    "next-env.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "vitest.setup.ts",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
+  "exclude": ["node_modules"]
+}

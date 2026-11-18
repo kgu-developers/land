@@ -1,0 +1,29 @@
+body {
+  font-family: system-ui, sans-serif;
+}
+main {
+  max-width: 64rem;
+  margin-inline: auto;
+  padding: clamp(3rem, 10vw, 8rem) 1.5rem;
+}
+h1 {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  line-height: 1.1;
+}
+p {
+  margin-block: 1.25rem;
+  line-height: 1.7;
+}
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+nav {
+  display: flex;
+  gap: 1.25rem;
+  max-width: 64rem;
+  margin-inline: auto;
+  padding: 1.5rem;
+}

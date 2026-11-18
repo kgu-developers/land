@@ -1,0 +1,37 @@
+{
+  "name": "@kd/land",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "test:logic": "vitest run --project logic",
+    "test:ui": "vitest run --project ui",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
+  },
+  "dependencies": {
+    "@aics/design-system": "workspace:*",
+    "next": "^16.2.1",
+    "react": "catalog:react19",
+    "react-dom": "catalog:react19"
+  },
+  "devDependencies": {
+    "@aics/typescript": "workspace:*",
+    "@playwright/test": "^1.63.0",
+    "@testing-library/jest-dom": "^7.0.0",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^22.14.1",
+    "@types/react": "19.1.2",
+    "@types/react-dom": "19.1.2",
+    "typescript": "^5.8.3",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.2.1",
+    "jsdom": "^30.0.1",
+    "vitest": "^4.1.10"
+  }
+}
