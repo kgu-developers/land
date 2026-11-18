@@ -73,6 +73,9 @@ describe('GitHub Discussions read path', () => {
     expect(JSON.parse(fetch.mock.calls[2]![1].body).variables.after).toBe(
       'next',
     );
+    expect(fetch.mock.calls[0]![1].headers['User-Agent']).toBe(
+      'kgu-developers-land',
+    );
     expect(fetch.mock.calls[0]![1].headers.Authorization).toBe(
       'Bearer test-token',
     );
