@@ -65,7 +65,7 @@ pnpm test:e2e
 
 `pnpm-lock.yaml`을 버전 관리하며 CI는 `pnpm install --frozen-lockfile`과 pnpm 캐시를 사용한다.
 
-CodeRabbit GitHub App으로 PR 생성·추가 push 시 한국어 자동 리뷰를 실행한다. 설정은 `.coderabbit.yaml`에서 관리하며 Draft PR은 자동 리뷰에서 제외한다. CodeRabbit은 GitHub Actions와 별도의 `CodeRabbit` 체크를 제공한다. 저장소 연결과 필수 검사 설정은 [CodeRabbit 운영 가이드](docs/code-review.md)를 따른다.
+CodeRabbit GitHub App에 한국어 PR 자동 리뷰를 설정했다. 다만 공개 저장소의 별이 10개 미만인 동안에는 PR 생성·추가 push 후 수동으로 리뷰를 요청해야 한다. 설정은 `.coderabbit.yaml`에서 관리하며 Draft PR은 자동 리뷰에서 제외한다. CodeRabbit은 GitHub Actions와 별도의 `CodeRabbit` 체크를 제공한다. 저장소 연결과 필수 검사 설정은 [CodeRabbit 운영 가이드](docs/code-review.md)를 따른다.
 
 ## 블로그와 정책 운영
 

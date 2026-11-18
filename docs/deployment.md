@@ -74,6 +74,7 @@ Vercel Git 배포는 GitHub Actions의 완료를 자동으로 기다리는 구�
 ```sh
 pnpm install --frozen-lockfile
 pnpm check
+pnpm --filter @kd/land exec playwright install chromium
 pnpm test:e2e
 ```
 
