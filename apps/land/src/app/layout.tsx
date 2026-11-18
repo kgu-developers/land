@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import type { ReactNode } from 'react';
 
 import '@aics/design-system/styles.css';
+import '@fontsource-variable/figtree';
 import './globals.css';
 
+import SiteLayout from '../components/site/SiteLayout';
+import SiteProvider from '../components/site/SiteProvider';
 import { description, siteUrl, teamName } from '../lib/site';
 
 export const metadata: Metadata = {
@@ -18,12 +20,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang='ko'>
       <body>
-        <nav aria-label='주 메뉴'>
-          <Link href='/'>홈</Link>
-          <Link href='/apply'>지원</Link>
-          <Link href='/blog'>블로그</Link>
-        </nav>
-        {children}
+        <SiteProvider>
+          <SiteLayout>{children}</SiteLayout>
+        </SiteProvider>
       </body>
     </html>
   );

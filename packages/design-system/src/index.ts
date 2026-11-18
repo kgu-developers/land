@@ -116,6 +116,11 @@ export type { TooltipProps } from '@astryxdesign/core/Tooltip';
 export { default as AstryxThemeProvider } from './provider/AstryxThemeProvider';
 export { oopTheme } from './theme/oopTheme';
 export { tokens } from './tokens';
+export { defineTheme } from '@astryxdesign/core/theme';
+export type { DefinedTheme } from '@astryxdesign/core/theme';
+
+export { TopNav, TopNavItem } from '@astryxdesign/core/TopNav';
+export type { TopNavProps, TopNavItemProps } from '@astryxdesign/core/TopNav';
 
 export { TimeInput } from '@astryxdesign/core/TimeInput';
 export type { TimeInputProps } from '@astryxdesign/core/TimeInput';

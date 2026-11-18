@@ -14,6 +14,6 @@ description: Next.js 공개 페이지 검증
 
 CI는 품질 체크, Vitest logic/UI, 빌드, E2E로 분리한다. 브라우저 테스트는 빌드 이후 별도 Job에서 실행한다. 변경 시 적절한 테스트를 함께 작성한다.
 
-현재 pnpm-lock.yaml이 없어 CI는 임시로 `pnpm install --no-frozen-lockfile`을 사용한다. lockfile을 생성하고 커밋한 뒤 `--frozen-lockfile` 및 pnpm 캐시를 활성화해야 설치 재현성이 확보된다.
+pnpm-lock.yaml을 버전 관리한다. 의존성을 변경하면 lockfile을 갱신하고 `pnpm install --frozen-lockfile`로 설치 재현성을 확인한다. CI는 frozen lockfile과 pnpm 캐시를 사용한다.
 
 환경 제약으로 확인하지 못한 항목은 검증 결과에 구분해 기록한다.

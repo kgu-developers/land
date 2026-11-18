@@ -1,6 +1,6 @@
-# KD Developers 랜딩 페이지
+# kgu developers 랜딩 페이지
 
-경기대학교 KD Developers의 공개 랜딩 페이지를 위한 Next.js App Router 프로젝트다.
+경기대학교 kgu developers의 공개 랜딩 페이지를 위한 Next.js App Router 프로젝트다.
 
 ## 로컬 실행
 
@@ -28,15 +28,15 @@ localhost:3000에서 팀 소개를 확인한다. 루트에서 `pnpm check`로 Pr
 
 ## 페이지 구조
 
-| URL    | 파일                             | 역할               |
-| ------ | -------------------------------- | ------------------ |
-| /      | apps/land/src/app/page.tsx       | 팀 홈              |
-| /apply | apps/land/src/app/apply/page.tsx | 지원 페이지 진입점 |
-| /blog  | apps/land/src/app/blog/page.tsx  | 팀 블로그 진입점   |
+| URL    | 파일                                    | 역할               |
+| ------ | --------------------------------------- | ------------------ |
+| /      | apps/land/src/app/page.tsx              | 팀 홈              |
+| /apply | apps/land/src/app/apply/page.tsx        | 지원 페이지 진입점 |
+| /blog  | apps/land/src/app/blog/(index)/page.tsx | 팀 블로그 진입점   |
 
 ## 팀 컨벤션
 
-OTP와 같이 브랜치는 `<type>/<ticket-id>`, 커밋은 `<type>(<scope>): <ticket-id> <summary>`, PR 제목은 `[<ticket-id>] <summary>` 형식을 쓴다. 이번 초기 세팅은 지정된 `KD3-336` 브랜치에서 진행한다.
+OTP와 같이 기능 브랜치는 `feature/<ticket-id>` (예: `feature/KD3-337`), 그 외 브랜치는 `<type>/<ticket-id>`, 커밋은 `<type>(<scope>): <ticket-id> <summary>`, PR 제목은 `[<ticket-id>] <summary>` 형식을 쓴다.
 주 컴포넌트는 PascalCase와 default function, 유틸리티는 lowerCamelCase와 named export를 사용한다. App Router 파일은 Next.js 예약 이름을 따른다.
 루트에서 `pnpm format:write`로 OTP Prettier 설정을 적용한다. Lefthook의 commit-msg 훅은 Conventional Commits 형식을 확인한다.
 
@@ -61,4 +61,11 @@ pnpm test:e2e
 
 `pnpm test`는 Vitest 전체를, `pnpm test:logic`과 `pnpm test:ui`는 각각의 테스트 프로젝트를 실행한다. `pnpm check`에는 브라우저 E2E를 포함하지 않는다. E2E는 별도로 실행해야 한다.
 
-**설치 재현성 후속 작업:** 초기 브랜치에는 `pnpm-lock.yaml`이 없다. 의존성 설치 후 lockfile을 생성·커밋하고 CI의 `--no-frozen-lockfile`을 `--frozen-lockfile`로 교체하며 pnpm 캐시를 활성화해야 한다.
+`pnpm-lock.yaml`을 버전 관리하며 CI는 `pnpm install --frozen-lockfile`과 pnpm 캐시를 사용한다.
+
+## 블로그와 정책 운영
+
+- [Discussions 설정·토큰 발급·글 작성 가이드](docs/blog-setup.md)
+- [정책 확정 회의 안건](docs/policy-meeting-checklist.md)
+
+`/terms`, `/privacy`, `/copyright`는 운영 회의 전 초안이다. 로고는 임시 이미지이며 헤더의 검색·테마·커뮤니티·GitHub·Apply 액션 버튼은 `SiteHeader.tsx`의 빈 클릭 핸들러를 추후 연결한다. Home/Blog/Apply 내비게이션 링크는 정상 이동한다.

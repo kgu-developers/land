@@ -17,6 +17,6 @@ describe('pageMetadata', () => {
   });
 
   it('uses the team name consistently', () => {
-    expect(teamName).toBe('KD Developers');
+    expect(teamName).toBe('kgu developers');
   });
 });

@@ -1,9 +1,12 @@
 import { defineConfig } from 'vitest/config';
+import { vanillaExtractPlugin } from '@vanilla-extract/vite-plugin';
 
 export default defineConfig({
+  plugins: [vanillaExtractPlugin()],
   test: {
     projects: [
       {
+        extends: true,
         test: {
           name: 'logic',
           environment: 'node',
@@ -11,6 +14,7 @@ export default defineConfig({
         },
       },
       {
+        extends: true,
         test: {
           name: 'ui',
           environment: 'jsdom',
