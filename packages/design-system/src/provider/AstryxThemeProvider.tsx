@@ -1,6 +1,8 @@
+'use client';
+
 import { InternationalizationProvider } from '@astryxdesign/core/i18n';
 import { Theme } from '@astryxdesign/core/theme';
-import type { ThemeMode } from '@astryxdesign/core/theme';
+import type { DefinedTheme, ThemeMode } from '@astryxdesign/core/theme';
 import type { ReactNode } from 'react';
 
 import { oopTheme } from '../theme/oopTheme';
@@ -8,6 +10,7 @@ import { oopTheme } from '../theme/oopTheme';
 type AstryxThemeProviderProps = {
   children: ReactNode;
   mode?: ThemeMode;
+  theme?: DefinedTheme;
 };
 
 /**
@@ -34,13 +37,14 @@ const koreanMessageOverrides = {
 export default function AstryxThemeProvider({
   children,
   mode = 'system',
+  theme = oopTheme,
 }: AstryxThemeProviderProps) {
   return (
     <InternationalizationProvider
       locale='ko'
       overrides={koreanMessageOverrides}
     >
-      <Theme theme={oopTheme} mode={mode}>
+      <Theme theme={theme} mode={mode}>
         {children}
       </Theme>
     </InternationalizationProvider>

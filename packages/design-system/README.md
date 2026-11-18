@@ -6,7 +6,7 @@ AICS/OOP의 Astryx integration boundary다. 이 패키지는 독자적인 디자
 
 ## Current runtime contract
 
-- Runtime: `@astryxdesign/core@0.2.0`
+- Runtime: `@astryxdesign/core@0.6.3`
 - `src/styles.css`: Astryx reset을 먼저, core CSS를 다음에 import한다.
 - `src/theme/oopTheme.ts`: Astryx semantic token contract를 유지하며 OOP 승인 theme override만 둔다.
 - `src/provider/AstryxThemeProvider.tsx`: consuming app의 theme wiring을 담당한다.
@@ -16,13 +16,15 @@ AICS/OOP의 Astryx integration boundary다. 이 패키지는 독자적인 디자
 현재 export inventory:
 
 ```text
-Avatar, Badge, Button, Card, Collapsible, CollapsibleGroup, Divider
-EmptyState, FileInput, IconButton, MetadataList, MetadataListItem, StatusDot, Tooltip
+AlertDialog, Avatar, Badge, BottomSheet, Breadcrumbs, BreadcrumbItem, Button, Card, Carousel
+CheckboxList, CheckboxListItem, Collapsible, CollapsibleGroup, Dialog, Divider, EmptyState, Field
+FileInput, IconButton, MetadataList, MetadataListItem, Pagination, Popover, RadioList, RadioListItem
+Selector, SelectorOption, StatusDot, Table, proportional, ToastViewport, useToast, Tooltip, TopNav, TopNavItem
+Tab, TabList
 HStack, VStack
 Text, Heading
-TextInput, TextArea
-AstryxThemeProvider, oopTheme
-tokens
+TextInput, TextArea, NumberInput, DateInput, DateTimeInput, TimeInput, MultiSelector
+AstryxThemeProvider, oopTheme, tokens, defineTheme (DefinedTheme type)
 ```
 
 ## Use from an app
@@ -52,3 +54,5 @@ pnpm --filter @aics/oop build
 ```
 
 Theme, export, CSS 변경은 OOP 소비 route에서 실제 렌더링까지 확인한다.
+
+`TopNav`와 `TopNavItem`은 공식 Astryx 컴포넌트를 재노출하며 랜딩 공통 헤더에서 사용한다. `defineTheme`와 `DefinedTheme`는 공식 테마 API다. `AstryxThemeProvider`의 선택적 `theme` prop에 앱 테마를 전달할 수 있으며 기본값은 `oopTheme`다. 랜딩 전용 글꼴·중립 색상·모서리 설정은 `apps/land/src/components/site/landTheme.ts`에서 관리한다.

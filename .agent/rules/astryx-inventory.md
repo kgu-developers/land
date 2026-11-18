@@ -6,13 +6,13 @@ Version-dependent inventory for `@astryxdesign/core@0.6.3`. Selection and stylin
 
 ```text
 AlertDialog, Avatar, Badge, BottomSheet, Breadcrumbs, BreadcrumbItem, Button, Card, Carousel, CheckboxList, CheckboxListItem, Collapsible, CollapsibleGroup, Dialog, Divider
-EmptyState, Field, FileInput, IconButton, MetadataList, MetadataListItem, Popover, RadioList, RadioListItem, Selector, SelectorOption, StatusDot, Table, ToastViewport, useToast
+EmptyState, Field, FileInput, IconButton, MetadataList, MetadataListItem, Popover, RadioList, RadioListItem, Selector, SelectorOption, StatusDot, Table, proportional, ToastViewport, useToast
 Tooltip
-Tab, TabList
+Tab, TabList, TopNav, TopNavItem
 HStack, VStack
 Text, Heading
 TextInput, TextArea, NumberInput, DateInput, DateTimeInput, TimeInput, MultiSelector
-AstryxThemeProvider, oopTheme, tokens
+AstryxThemeProvider, oopTheme, tokens, defineTheme (DefinedTheme type)
 ```
 
 ## Installed Astryx components

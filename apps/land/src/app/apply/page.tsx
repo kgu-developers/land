@@ -3,7 +3,7 @@ import { pageMetadata } from '../../lib/site';
 export const metadata = pageMetadata(
   '/apply',
   '지원',
-  'KD Developers 지원 안내',
+  'kgu developers 지원 안내',
 );
 
 export default function ApplyPage() {

@@ -1,0 +1,62 @@
+body:
+  - type: markdown
+    attributes:
+      value: |
+        kgu developers 블로그 글을 작성합니다. Discussion 제목이 블로그 제목이 됩니다.
+        이 저장소는 공개 저장소입니다. 게시 승인 전 글도 GitHub에서는 공개됩니다.
+        필드 이름과 순서를 유지해 주세요. 본문은 Markdown으로 작성합니다.
+        운영진이 blog:published 라벨을 추가하면 사이트에 게시됩니다.
+  - type: dropdown
+    id: post-type
+    attributes:
+      label: 글 유형
+      options:
+        - 소식
+        - 개발
+        - 팀 이야기
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: 요약
+      description: 목록 카드와 글 소개에 표시할 요약입니다. 240자 이내로 작성해 주세요.
+      placeholder: 이 글에서 함께 나눌 내용을 짧게 소개해 주세요.
+    validations:
+      required: true
+  - type: input
+    id: cover
+    attributes:
+      label: 대표 이미지
+      description: 이미지의 HTTPS 주소를 입력합니다. 비워두면 팀 공통 커버를 사용합니다.
+      placeholder: https://github.com/user-attachments/assets/...
+  - type: input
+    id: cover-alt
+    attributes:
+      label: 이미지 설명
+      description: 대표 이미지를 등록했다면 이미지 내용을 설명해 주세요. 장식 이미지에도 내용을 설명합니다.
+  - type: input
+    id: tags
+    attributes:
+      label: 태그
+      description: 쉼표로 구분합니다. 최대 8개, 태그 하나당 30자 이내입니다.
+      placeholder: Next.js, 협업, 회고
+  - type: textarea
+    id: content
+    attributes:
+      label: 본문
+      description: Markdown을 지원합니다. HTML, 스크립트, MDX는 실행하지 않습니다.
+      value: |
+        ## 이야기의 시작
+
+        배경과 이 글을 쓰게 된 계기를 소개해 주세요.
+
+        ## 함께 나눌 내용
+
+        과정과 배운 점을 구체적으로 작성해 주세요.
+
+        ## 마무리
+
+        다음 시도와 참고 자료를 정리해 주세요.
+    validations:
+      required: true

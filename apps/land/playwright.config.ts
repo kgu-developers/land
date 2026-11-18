@@ -22,10 +22,15 @@ export default defineConfig({
   },
   projects: [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }],
   webServer: {
-    command: 'pnpm start',
+    command:
+      'node --require ./e2e/github-preload.cjs ./node_modules/next/dist/bin/next start',
     url: 'http://127.0.0.1:3000',
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false,
     timeout: 120_000,
-    env: { SITE_URL: 'http://127.0.0.1:3000' },
+    env: {
+      SITE_URL: 'http://127.0.0.1:3000',
+      GITHUB_DISCUSSIONS_TOKEN: 'e2e-fixture-token',
+      GITHUB_DISCUSSIONS_REPO: 'land-client-e2e',
+    },
   },
 });

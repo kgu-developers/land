@@ -1,3 +1,5 @@
+'use client';
+
 import { defineTheme } from '@astryxdesign/core/theme';
 
 /**
